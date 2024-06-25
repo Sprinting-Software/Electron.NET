@@ -137,7 +137,7 @@ namespace ElectronNET.CLI.Commands
                 if (Directory.Exists(checkForNodeModulesDirPath) == false || parser.Contains(_paramForceNodeInstall) || parser.Contains(_paramPackageJson))
 
                     Console.WriteLine("Start npm install...");
-                ProcessHelper.CmdExecute("npm install --production", tempPath);
+                ProcessHelper.CmdExecute("npm install --omit=dev", tempPath);
 
                 Console.WriteLine("ElectronHostHook handling started...");
 
@@ -198,7 +198,7 @@ namespace ElectronNET.CLI.Commands
                         : $"node build-helper.js {manifestFileName} {version}", tempPath);
 
                 Console.WriteLine($"Package Electron App for Platform {platformInfo.ElectronPackerPlatform}...");
-                ProcessHelper.CmdExecute($"npx electron-builder --config=./bin/electron-builder.json --{platformInfo.ElectronPackerPlatform} --{electronArch} -c.electronVersion=23.2.0 {electronParams}", tempPath);
+                ProcessHelper.CmdExecute($"npx electron-builder@24.13.3 --config=./bin/electron-builder.json --{platformInfo.ElectronPackerPlatform} --{electronArch} -c.electronVersion=24.8.8 {electronParams}", tempPath);
 
                 Console.WriteLine("... done");
 
